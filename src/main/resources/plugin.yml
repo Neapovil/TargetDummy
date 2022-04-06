@@ -6,6 +6,7 @@ author: Neapovil
 website: https://github.com/Neapovil/targetdummy
 depend:
   - CommandAPI
+  - Citizens
 permissions:
   targetdummy.command.admin:
     default: op
