@@ -12,6 +12,7 @@ import com.github.neapovil.targetdummy.command.CreateCommand;
 import com.github.neapovil.targetdummy.command.DeleteCommand;
 import com.github.neapovil.targetdummy.command.DespawnCommand;
 import com.github.neapovil.targetdummy.command.SpawnCommand;
+import com.github.neapovil.targetdummy.command.TeleportCommand;
 import com.github.neapovil.targetdummy.listener.Listener;
 
 import dev.jorel.commandapi.StringTooltip;
@@ -39,6 +40,7 @@ public final class TargetDummy extends JavaPlugin
         SpawnCommand.register();
         DeleteCommand.register();
         DespawnCommand.register();
+        TeleportCommand.register();
 
         this.getServer().getPluginManager().registerEvents(new Listener(), this);
     }
