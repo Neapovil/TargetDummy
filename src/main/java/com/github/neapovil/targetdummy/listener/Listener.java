@@ -20,8 +20,6 @@ public final class Listener implements org.bukkit.event.Listener
     @EventHandler
     public void npcDamageByEntity(NPCDamageByEntityEvent event)
     {
-        event.setCancelled(true);
-
         final LivingEntity player = (LivingEntity) event.getNPC().getEntity();
 
         final Location location = player.getLocation();

@@ -27,11 +27,10 @@ public final class CreateCommand
                     final NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, displayname);
 
                     npc.data().setPersistent(Metadata.DAMAGE_OTHERS, false);
-                    npc.data().setPersistent(Metadata.DEFAULT_PROTECTED, false);
+                    npc.data().setPersistent(Metadata.DEFAULT_PROTECTED, true);
                     npc.data().setPersistent(Metadata.DROPS_ITEMS, false);
                     npc.data().setPersistent(Metadata.SHOULD_SAVE, true);
                     npc.data().setPersistent(Metadata.TARGETABLE, false);
-                    npc.data().setPersistent(Metadata.RESPAWN_DELAY, 1);
                     npc.data().setPersistent(Metadata.COLLIDABLE, false);
 
                     plugin.getFileConfig().set("targetdummy." + npc.getId(), displayname);
