@@ -4,6 +4,7 @@ import com.github.neapovil.targetdummy.TargetDummy;
 
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPICommand;
+import dev.jorel.commandapi.arguments.ArgumentSuggestions;
 import dev.jorel.commandapi.arguments.IntegerArgument;
 import dev.jorel.commandapi.arguments.LiteralArgument;
 import net.citizensnpcs.api.CitizensAPI;
@@ -18,15 +19,15 @@ public final class DeleteCommand
         new CommandAPICommand("targetdummy")
                 .withPermission(TargetDummy.ADMIN_COMMAND_PERMISSION)
                 .withArguments(new LiteralArgument("delete"))
-                .withArguments(new IntegerArgument("dummy").replaceSuggestionsT(info -> {
+                .withArguments(new IntegerArgument("dummy").replaceSuggestions(ArgumentSuggestions.stringsWithTooltips(info -> {
                     return plugin.getDummiesAsTooltip();
-                }))
+                })))
                 .executesPlayer((player, args) -> {
                     final int dummy = (int) args[0];
 
                     if (plugin.getFileConfig().get("targetdummy." + dummy) == null)
                     {
-                        CommandAPI.fail("This dummy doesn't exist");
+                        throw CommandAPI.fail("This dummy doesn't exist");
                     }
 
                     final NPC npc = CitizensAPI.getNPCRegistry().getById(dummy);
@@ -34,7 +35,8 @@ public final class DeleteCommand
                     if (npc == null)
                     {
                         plugin.getFileConfig().remove("targetdummy." + dummy);
-                        CommandAPI.fail("This dummy doesn't exist");
+
+                        throw CommandAPI.fail("This dummy doesn't exist");
                     }
 
                     if (npc.isSpawned())
